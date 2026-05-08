@@ -832,3 +832,10 @@ h2 + table {
   max-width: 130mm;
   height: auto;
 }
+.cta-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 220mm;
+}
