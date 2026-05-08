@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ company_name }} : Market Position Audit</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+{# --- Cover --- #}
+<section class="page page--cover">
+  <div class="page-content cover">
+<div class="cover__brand">{{ company_name|upper }}</div>
+<div class="cover__url">{{ url|replace('https://', '')|replace('http://', '') }}</div>
+<div class="cover__date">{{ report_date }}</div>
+<img src="../assets/Soba_logo_lockup_BW.png" alt="Soba: Private Label" class="cover__logo">
+  </div>
+</section>
+
+{# --- Contents --- #}
+<section class="page page--contents">
+  <div class="page-content">
+    <h1 class="h1--contents">CONTENTS</h1>
+    <ol class="contents-list">
+      <li>Position score and what it means</li>
+      {% if sections.costing %}<li>What this position is costing you</li>{% endif %}
+      <li>Competitive landscape and market map</li>
+      <li>Key positioning {{ "strengths" if sections.key_issues_or_strengths.section_mode == "strengths" else "issues" }}</li>
+      <li>Recommendations</li>
+      {% if sections.what_to_do_next %}<li>What to do next</li>{% endif %}
+      <li>Contact details</li>
+    </ol>
+    <div class="contents-illustration">
+      <img src="../assets/pug.png" alt="" class="illustration-pug">
+    </div>
+  </div>
+</section>
+
+{# --- Executive Summary --- #}
+<section class="page">
+  <div class="page-content">
+    <h1>Executive Summary</h1>
+    <p class="score-label">Your homepage scored {{ sections.executive_summary.score_label }}</p>
+    <p class="score-label-small">{{ sections.executive_summary.score_band }}</p>
+    <p class="callout">{{ sections.executive_summary.pull_quote }}</p>
+   {% for paragraph in sections.executive_summary.body_paragraphs %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+<blockquote class="pull-quote-closing">
+      <p class="pull-quote-closing__text">97% of firms in this category sound the same to the buyers they want.</p>
+      <p class="pull-quote-closing__source">Source: Pan-European Professional Services Positioning Index, PandaRoll Market Research and Insights, 2026.</p>
+    </blockquote>
+   
+</section>
+
+{# --- Position Score --- #}
+<section class="page">
+  <div class="page-content">
+    <h1>Position score and what it means</h1>
+    {# The score pill text. Use safe substitution to defend against the
+       "OUTOF" collapse: if the bundle's presentation field is malformed,
+       fall back to constructing it from score_value. #}
+    <div class="score-pill">{{ sections.score.presentation|replace('OUTOF', 'OUT OF') }}</div>
+    <p class="score-label">{{ sections.score.score_band_short }}</p>
+
+    {% for paragraph in sections.score.opening_paragraphs %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+
+    {% set met_count = sections.score.criteria_checklist|selectattr('status', 'equalto', 'Met')|list|length %}
+    <p>{{ sections.score.criteria_checklist|length }} of the four criteria for a {{ sections.score.target_level }} are assessed below. {{ met_count }} are met.</p>
+
+    <h2 class="pill">What's gone wrong; what's gone well</h2>
+    <table class="criteria-table">
+      <thead>
+        <tr><th style="width: 70%;">Criteria</th><th style="width: 30%;">Status</th></tr>
+      </thead>
+      <tbody>
+        {% for criterion in sections.score.criteria_checklist %}
+        <tr>
+          <td class="row-label">({{ criterion.id }}) {{ criterion.description }}</td>
+          <td class="status status--{{ 'met' if criterion.status == 'Met' else 'not-met' }}">
+            {{ criterion.status|upper }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="criteria-illustration">
+      <img src="../assets/Sushichopsticks.png" alt="" class="illustration-sushi">
+    </div>
+
+   <h2 class="issue page-break-before">What this means in practice</h2>
+    {% for paragraph in sections.score.what_this_means_paragraphs %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+
+    <img src="../assets/bowl.png" alt="" class="illustration-bowl">
+  </div>
+</section>
+
+{# --- What this position is costing you (skipped at score 5) --- #}
+{% if sections.costing %}
+<section class="page">
+  <div class="page-content">
+    <h1>What this position is costing you</h1>
+    <p>{{ sections.costing.intro }}</p>
+    {% for section in sections.costing.sections %}
+    <h2 class="pill">{{ section.title }}</h2>
+    <p>{{ section.body }}</p>
+    {% endfor %}
+    <div class="costing-illustration">
+      <img src="../assets/fullbento.png" alt="" class="illustration-bento">
+    </div>
+</section>
+{% endif %}
+
+{# --- Competitive Landscape --- #}
+<section class="page">
+  <div class="page-content">
+    <h1>Competitive Landscape</h1>
+    <p>{{ sections.competitive_landscape.intro_paragraph }}</p>
+    {% for competitor in sections.competitive_landscape.competitor_descriptions %}
+    <p>{{ competitor.paragraph }}</p>
+    {% endfor %}
+    <div class="cta-wrapper">
+    <h2 class="pill cta-pill">You don't have to go it alone</h2>
+    <div class="cta-block">
+      <p class="cta-block__copy">Crushing your competitors is easy when you know where to start, but if you do need a nudge in the right direction we're here to help. You can have a 90-minute working session with Storm for only £399 (usually £649 but you get £250 rebate because you bought this report).</p>
+<p class="cta-block__action">Email <strong>storm@sobaprivatelabel.com</strong> to get booked in.</p>
+    </div>
+</div>
+    {% set table = sections.competitive_landscape.comparison_table %}
+    <table class="competitor-comparison">
+      <thead>
+        <tr>
+          <th></th>
+          {% for col in table.columns %}
+          <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in table.rows %}
+        <tr>
+          <td class="row-label">{{ row.label }}</td>
+          {% for value in row['values'] %}
+          <td>{{ value if value else "—" }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{# --- Language Analysis + Visual Identity + Gaps --- #}
+<section class="page">
+  <div class="page-content">
+    <h2 class="pill">Language and claims analysis</h2>
+    <p>{{ sections.competitive_landscape.language_analysis.intro }}</p>
+    <ol class="numbered">
+      {% for phrase in sections.competitive_landscape.language_analysis.shared_phrases %}
+      <li>{{ phrase }}</li>
+      {% endfor %}
+    </ol>
+    <p style="margin-top: 5mm;">{{ sections.competitive_landscape.language_analysis.unique_intro }}</p>
+    <ol class="numbered">
+      {% for phrase in sections.competitive_landscape.language_analysis.unique_phrases %}
+      <li>{{ phrase }}</li>
+      {% endfor %}
+    </ol>
+
+   
+    <h2 class="pill" style="margin-top: 8mm;">Visual identity comparison</h2>
+    {% set vtable = sections.competitive_landscape.visual_identity.comparison_table %}
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          {% for col in vtable.columns %}
+          <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in vtable.rows %}
+        <tr>
+          <td class="row-label">{{ row.label }}</td>
+          {% for value in row['values'] %}
+          <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% for paragraph in sections.competitive_landscape.visual_identity.commentary_paragraphs %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+
+<div class="gaps-block">
+    <h2 class="pill" style="margin-top: 8mm;">Where the gaps are</h2>
+<p>{{ sections.competitive_landscape.gaps.intro }}</p>
+    {% for territory in sections.competitive_landscape.gaps.territories %}
+<p><strong>{{ territory.name }}.</strong> {{ territory.description }}</p>
+    {% endfor %}
+</div>
+</section>
+
+{# --- Key Positioning Issues / Strengths --- #}
+<section class="page">
+  <div class="page-content">
+    {% set is_strengths = sections.key_issues_or_strengths.section_mode == "strengths" %}
+    <h1>Key Positioning {{ "Strengths" if is_strengths else "Issues" }}</h1>
+    <p class="callout">{{ sections.key_issues_or_strengths.intro }}</p>
+    {% for issue in sections.key_issues_or_strengths.issues %}
+    <div class="issue-block">
+      <h2 class="issue">{{ issue.title }}</h2>
+      <p>{{ issue.body }}</p>
+      <div class="severity severity--{{ issue.priority|lower }}">{{ issue.priority }}</div>
+    </div>
+    {% endfor %}
+    <div class="severity-illustration">
+      <img src="../assets/trafficbowls.png" alt="" class="illustration-traffic-bowls">
+    </div>
+  </div>
+</section>
+
+{# --- Recommendations (with flag block and cat at the bottom) --- #}
+<section class="page page--recommendations">
+<div class="page-content">
+<h1>Recommendations</h1>
+<p class="callout">{{ sections.recommendations.intro }}</p>
+    {% for rec in sections.recommendations.recommendations %}
+<h2 class="pill">{{ rec.title }}</h2>
+<p>{{ rec.body }}</p>
+    {% endfor %}
+<div class="recommendations-illustration">
+<img src="../assets/cat.png" alt="" class="illustration-cat">
+</div>
+    {% if sections.recommendations.where_to_plant_your_flag %}
+    {% set flag = sections.recommendations.where_to_plant_your_flag %}
+<div class="flag-block no-break">
+<div class="flag-block__title">{{ flag.title }}</div>
+<ul class="flag-competitors">
+        {% for c in flag.competitors_own %}
+<li><strong>{{ c.name }}</strong> {{ c.owns }}</li>
+        {% endfor %}
+</ul>
+<p><strong>Empty territory:</strong> {{ flag.empty_territory }}</p>
+<p><strong>The move:</strong> {{ flag.the_move }}</p>
+<p><strong>Why it works:</strong> {{ flag.why_this_works }}</p>
+</div>
+    {% endif %}
+</div>
+</section>
+
+{# --- What To Do Next (skipped at score 5) --- #}
+{% if sections.what_to_do_next %}
+<section class="page">
+  <div class="page-content">
+    <h1>What to do next</h1>
+    <p class="callout">{{ sections.what_to_do_next.intro }}</p>
+    <ol class="numbered">
+      {% for action in sections.what_to_do_next.actions %}
+      <li>
+        <strong>{{ action.title }}</strong>
+        {{ action.body }}
+      </li>
+      {% endfor %}
+    </ol>
+
+    <div class="cta-block">
+      <h3 class="cta-block__heading">Want to put this into action?</h3>
+      <p>Book a 90-minute working session with Storm, Managing Director at Soba. We'll pressure-test the gaps in this report, agree where to focus first, and send you a written summary so the decisions don't live only in your head.</p>
+      <p class="cta-block__price">&pound;649, with &pound;250 credited from your IQ Super purchase.</p>
+      <p class="cta-block__action">Email storm@sobaprivatelabel.com to book.</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# --- Contact (full bleed lime) --- #}
+<section class="page page--contact">
+  <div class="page-content">
+    <div class="contact__brand">
+      <img src="../assets/Soba_logo_lockup_WG.png" alt="Soba: Private Label" class="contact__logo">
+    </div>
+    <h2 class="contact__heading">Contact</h2>
+    <p class="contact__line">sobaprivatelabel.com</p>
+    <p class="contact__line">storm@sobaprivatelabel.com</p>
+  </div>
+</section>
+
+</body>
+</html>

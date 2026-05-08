@@ -1,0 +1,834 @@
+/* ==========================================================================
+   Soba IQ Super: PDF report stylesheet
+   Designer-spec version, built from the InDesign IDML 6 May 2026.
+
+   Renders via DocRaptor to A4 PDF.
+
+   Paragraph styles, point sizes, and colours are translated directly from
+   the IDD package. Filson Pro is the licensed designer font; Manrope is
+   the closest free near-equivalent and is used here as a stand-in.
+   To swap to Filson later: change the @import + --font-display lines only.
+   ========================================================================== */
+
+/* --- Fonts ---------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap');
+
+/* --- Design tokens (from IDD Graphic.xml) -------------------------------- */
+
+:root {
+  /* Colours, exact RGB from IDD swatches */
+  --soba-black: #0F1417;
+  --soba-green: #E5FC78;
+  --paper: #FFFFFF;
+  --severity-red: #DB544B;
+  --severity-orange: #DB7423;
+  --severity-green: #4BD014;
+  --cream: #F4FBC8;          /* lime at 40% tint, used for cream table cells */
+
+  /* Type stack */
+  --font-display: 'Onest', system-ui, sans-serif;
+  --font-body: 'Onest', system-ui, sans-serif;
+
+  /* Scale (point values from IDD, expressed here in pt for direct mapping) */
+  --pt-h1-section: 24pt;
+  --pt-h1-cover: 40pt;
+  --pt-h1-contents: 48pt;
+  --pt-score-pill: 64pt;
+  --pt-score-large: 72pt;
+  --pt-score-small: 40pt;
+  --pt-score-label: 24pt;
+  --pt-score-label-small: 16pt;
+  --pt-h2-pill: 14pt;
+  --pt-callout: 20pt;
+  --pt-body: 12pt;
+  --pt-body-small: 10pt;
+  --pt-list-contents: 16pt;
+  --pt-severity: 18pt;
+  --pt-contact: 24pt;
+  --pt-table-header: 8pt;
+  --pt-table-body: 10pt;
+}
+
+/* --- Page setup ----------------------------------------------------------- */
+
+/* The squiggle border PNG (IQ BG.png from the designer package) is a full
+   A4 at 300dpi with the white card cutout baked in. We use it as @page
+   background so it repaints automatically on every page including overflow
+   continuation pages. The page-content sits inside the safe area defined by
+   the white card. */
+
+@page {
+  size: A4;
+  margin: 0 0 22mm 0;
+  background: url('../assets/border.png') no-repeat center / 100% 100%;
+
+  @bottom-center {
+    content: "Prepared by Soba: Private Label";
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 8.5pt;
+    color: var(--soba-black);
+    vertical-align: top;
+  
+  }
+}
+
+@page cover {
+  background: var(--soba-green);
+  margin: 0;
+  @bottom-center { content: ""; }
+}
+
+@page contact {
+  background: var(--soba-black);
+  margin: 0;
+  @bottom-center { content: ""; }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--pt-body);
+  line-height: 1.4;
+  color: var(--soba-black);
+  background: transparent;
+
+  /* Prince converts "(c)" to "©" via OpenType contextual ligatures.
+     We don't want that. Disable all ligatures globally. */
+  font-variant-ligatures: none;
+  orphans: 3;
+  widows: 3;
+}
+
+/* --- Page wrapper -------------------------------------------------------- */
+
+/* Each .page is a section that forces a page break before it. The outer
+   padding (22mm) reserves the squiggle border zone; the inner padding
+   (14mm) sits inside the white card. The min-height ensures a section
+   that's short still fills the visible card area. */
+
+.page {
+  page-break-before: always;
+  page-break-inside: auto;
+  padding: 20mm 22mm 18mm 22mm;
+  box-sizing: border-box;
+}
+
+.page:first-of-type {
+  page-break-before: auto;
+}
+
+.page-content {
+  padding: 0 6mm;
+  box-sizing: border-box;
+}
+.page--contents .page-content {
+  /* contents page flows naturally; pug sits below the list */
+}
+
+.page--cover {
+  page: cover;
+  background: var(--soba-green);
+  background-image: none;
+  padding: 28mm 24mm;
+}
+
+.page--contact {
+  page: contact;
+  background: var(--soba-black);
+  background-image: none;
+  padding: 0;
+}
+.page--contact .page-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 297mm;
+  text-align: center;
+  color: var(--soba-green);
+}
+
+/* --- Headings ------------------------------------------------------------- */
+
+/* H1_Section: 24pt Black AllCaps centred, leading 24pt */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--pt-h1-section);
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 0 0 6mm 0;
+  color: var(--soba-black);
+}
+
+/* H1_Contents: 48pt Black AllCaps left-aligned */
+h1.h1--contents {
+  font-size: var(--pt-h1-contents);
+  text-align: left;
+  margin: 0 0 6mm 0;
+  letter-spacing: -0.01em;
+}
+
+/* H1_Cover: 40pt Black AllCaps centred (the cover font) */
+.h1--cover {
+  font-family: var(--font-display);
+  font-size: var(--pt-h1-cover);
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: left;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0 0 4mm 0;
+  color: var(--soba-black);
+}
+
+/* H2_Subsection: lime pill, 14pt Bold, rounded radius 30 (very rounded) */
+h2.pill.cta-pill {
+  background: var(--soba-black);
+  color: var(--soba-green);
+}
+h2.pill, .h2-pill {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--pt-h2-pill);
+  font-weight: 700;
+  background: var(--soba-green);
+  color: var(--soba-black);
+  padding: 2mm 5mm;
+  border-radius: 30pt;
+  margin: 4mm 0 3mm 0;
+  text-transform: none;
+  line-height: 1.2;
+  page-break-after: avoid;
+}
+
+/* H2_Subsection_Issues: bold dark text with dotted lime underline, no pill */
+h2.issue, .h2-issue {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--pt-h2-pill);
+  font-weight: 700;
+  color: var(--soba-black);
+  background: transparent;
+  border-bottom: 1.5pt dotted var(--soba-green);
+  padding: 0 0 2mm 0;
+  margin: 5mm 0 3mm 0;
+  text-transform: none;
+}
+
+/* --- Body text ----------------------------------------------------------- */
+
+/* Body_Main: 12pt Regular, hyphenation off, space before/after 8 */
+p {
+  font-size: var(--pt-body);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0 0 3mm 0;
+  color: var(--soba-black);
+}
+
+p.body-small {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--pt-body-small);
+  text-align: center;
+}
+
+/* Score_Label: Book Italic 24pt centred (used as primary lead) */
+.score-label, p.score-label {
+  font-family: var(--font-display);
+  font-size: var(--pt-score-label);
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.2;
+  margin: 3mm 0 3mm 0;
+  color: var(--soba-black);
+}
+
+/* Score_Label_Small: Book 16pt AllCaps centred */
+.score-label-small, p.score-label-small {
+  font-family: var(--font-display);
+  font-size: var(--pt-score-label-small);
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin: 0 0 4mm 0;
+  color: var(--soba-black);
+}
+
+/* Callout_Text: Regular Italic 20pt centred (the pull quote / lead) */
+.callout, p.callout {
+  font-family: var(--font-display);
+  font-size: var(--pt-callout);
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.25;
+  margin: 3mm 8mm 5mm 8mm;
+  color: var(--soba-black);
+}
+
+/* Stat_Highlight inline: medium italic with dotted lime underline.
+   Used for emphasis on key statistics in the costing section. */
+.stat {
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--soba-green);
+  text-decoration-thickness: 1.2pt;
+  text-underline-offset: 2pt;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* --- Cover page ---------------------------------------------------------- */
+
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 240mm;
+  text-align: center;
+  padding-top: 0;
+  position: relative;
+}
+
+.cover__logo {
+  position: absolute;
+  bottom: 0mm;
+  right: -7mm;
+  width: 90mm;
+  height: auto;
+  display: block;
+}
+
+.cover__brand {
+  font-family: var(--font-display);
+  font-size: var(--pt-h1-cover);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0 0 4mm 0;
+}
+
+.cover__url {
+  font-family: var(--font-display);
+  font-size: 14pt;
+  font-weight: 500;
+  margin: 0 0 8mm 0;
+}
+
+.cover__date {
+  font-family: var(--font-display);
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+/* --- Contents page ------------------------------------------------------- */
+
+.contents-list {
+  list-style: none;
+  padding: 0;
+  margin: 6mm 0 0 0;
+  counter-reset: contents-item;
+}
+
+.contents-list li {
+  font-family: var(--font-display);
+  font-size: var(--pt-list-contents);
+  font-weight: 500;
+  padding: 2mm 0 2mm 12mm;
+  position: relative;
+  line-height: 1.3;
+  counter-increment: contents-item;
+}
+
+.contents-list li::before {
+  content: counter(contents-item) ".";
+  position: absolute;
+  left: 0;
+  top: 2mm;
+  font-weight: 700;
+  width: 10mm;
+  text-align: left;
+}
+
+.contents-illustration {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+}
+.contents-illustration img {
+  width: 230mm;
+  height: auto;
+}
+
+/* --- Score pill (the big one) -------------------------------------------- */
+
+/* Full-width lime pill, 64pt Black text, AllCaps, very rounded.
+   The 800 corner radius in IDD becomes border-radius: 200pt+ in CSS
+   to guarantee fully rounded ends regardless of width. */
+.score-pill {
+  background: var(--soba-green);
+  color: var(--soba-black);
+  border-radius: 999pt;
+  padding: 5mm 8mm;
+  text-align: center;
+  margin: 5mm 0 5mm 0;
+  font-family: var(--font-display);
+  font-size: var(--pt-score-pill);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  /* white-space:nowrap so "OUT OF" can't break across lines and so the
+     space between OUT and OF can't be collapsed by any inherited rule */
+  white-space: nowrap;
+}
+
+/* --- Severity pills (HIGH / MEDIUM / LOW) -------------------------------- */
+
+/* Severity_Text_*: 18pt Black AllCaps centred, on a 800-radius rounded
+   black pill. Text colour varies: red for HIGH, orange for MEDIUM,
+   lime for LOW. */
+.severity {
+  display: inline-block;
+  background: var(--soba-black);
+  color: var(--paper);
+  border-radius: 999pt;
+  padding: 2mm 12mm;
+  font-family: var(--font-display);
+  font-size: var(--pt-severity);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  margin: 3mm 0 5mm 0;
+  page-break-before: avoid;
+}
+
+.severity--high { color: var(--severity-red); }
+.severity--medium { color: var(--severity-orange); }
+.severity--low { color: var(--severity-green); }
+
+/* Strength variants (when section_mode = "strengths" rather than issues) */
+.severity--defining { color: var(--soba-green); }
+.severity--strong { color: var(--severity-green); }
+.severity--notable { color: var(--severity-orange); }
+
+/* --- Tables -------------------------------------------------------------- */
+
+/* General table: black header row with lime text, cream body rows.
+   Used for criteria checklist, competitor comparison, visual identity. */
+table {
+  page-break-inside: avoid;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 1pt;
+  margin: 4mm 0 5mm 0;
+  font-family: var(--font-display);
+  font-size: var(--pt-table-body);
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+/* Don't break inside a row. A row that won't fit at the bottom of the
+   current page moves entirely to the next page. */
+   thead {
+  display: table-header-group;
+}
+tr {
+  page-break-inside: avoid;
+}
+
+th {
+  background: var(--soba-black);
+  color: var(--soba-green);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 3mm 3mm;
+  font-size: var(--pt-table-header);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+td {
+  background: var(--cream);
+  color: var(--soba-black);
+  padding: 3mm 3mm;
+  vertical-align: middle;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--pt-table-body);
+  line-height: 1.3;
+  hyphens: manual;
+  word-break: keep-all;
+}
+
+td.row-label {
+  font-weight: 700;
+}
+
+/* Criteria checklist: status column has full-bleed coloured fill */
+.criteria-table {
+  page-break-after: avoid;
+}
+.criteria-table td.status {
+  text-align: center;
+  font-weight: 800;
+  font-size: var(--pt-table-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper);
+  padding: 3mm;
+}
+.criteria-table td.status--met {
+  background: var(--severity-green);
+}
+.criteria-table td.status--not-met {
+  background: var(--severity-red);
+}
+
+/* --- Lists --------------------------------------------------------------- */
+
+/* List_Numbered: 12pt Medium with first-line indent.
+   IDD uses bold sub-heading inside each numbered item via inline strong. */
+ol.numbered, ul.bullets {
+  padding-left: 0;
+  margin: 4mm 0;
+  list-style: none;
+  counter-reset: list-item;
+}
+
+ol.numbered li, ul.bullets li {
+  position: relative;
+  padding-left: 10mm;
+  margin-bottom: 4mm;
+  font-family: var(--font-display);
+  font-size: var(--pt-body);
+  font-weight: 500;
+  line-height: 1.45;
+  counter-increment: list-item;
+}
+
+ol.numbered li::before, ul.bullets li::before {
+  content: counter(list-item) ".";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  width: 8mm;
+}
+
+ol.numbered li strong, ul.bullets li strong {
+  font-weight: 700;
+}
+
+/* --- Where to plant your flag block -------------------------------------- */
+
+.flag-block {
+  background: var(--cream);
+  padding: 6mm 8mm;
+  margin: 5mm 0;
+  border-radius: 4pt;
+}
+
+.flag-block__title {
+  font-family: var(--font-display);
+  font-size: 14pt;
+  font-weight: 800;
+  margin-bottom: 4mm;
+  text-transform: uppercase;
+  color: var(--soba-black);
+}
+
+.flag-competitors {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 4mm 0;
+}
+
+.flag-competitors li {
+  padding: 1mm 0;
+  font-size: var(--pt-body);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.flag-competitors li strong {
+  display: inline-block;
+  min-width: 55mm;
+  font-weight: 700;
+}
+
+.flag-block p {
+  font-size: var(--pt-body);
+  line-height: 1.45;
+  margin-bottom: 2mm;
+}
+
+/* --- Decorative illustrations -------------------------------------------- */
+
+.illustration-bowl {
+  display: block;
+  margin: 8mm auto 0 auto;
+  max-width: 60mm;
+  height: auto;
+  page-break-before: avoid;
+  break-before: avoid;
+}
+
+.illustration-cat {
+  display: block;
+  margin: 6mm auto 0 auto;
+  max-width: 100mm;
+  height: auto;
+  page-break-before: avoid;
+}
+.recommendations-illustration {
+  text-align: center;
+  margin: 5mm 0 0 0;
+}
+
+.page--recommendations .page-content {
+  position: relative;
+  min-height: 240mm;
+}
+
+.illustration-pug {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 250mm;
+  height: auto;
+}
+
+
+/* --- Contact page (full bleed lime) -------------------------------------- */
+
+.contact__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6mm;
+  margin: 0 auto 10mm auto;
+}
+
+.contact__pug {
+  width: 130mm;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.contact__logo {
+  width: 150mm;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* --- Page break helpers --------------------------------------------------- */
+
+.no-break {
+  page-break-inside: avoid;
+}
+
+.keep-with-next {
+  page-break-after: avoid;
+}
+.page-break-before {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* Score pill should never split across pages */
+.score-pill, .severity, .flag-block {
+  page-break-inside: avoid;
+}
+/* Keep a table together with the heading or intro paragraph that
+   immediately precedes it. Without this, h2 + table can get split when
+   the table itself can't fit on the current page. */
+/* Keep a table together with the heading or intro paragraph that
+   immediately precedes it. We don't constrain what comes AFTER the
+   table; that content can flow onto subsequent pages naturally. */
+/* Keep a table together with the heading or intro paragraph that
+   immediately precedes it. */
+h2 + table {
+  page-break-before: avoid;
+}
+
+/* Where the gaps are: keep both territory paragraphs together with the
+   pill. They form a tight conceptual unit. */
+.gaps-block {
+  page-break-inside: avoid;
+}
+
+/* --- CTA block (used as section-tail filler) ----------------------------- */
+
+.cta-block {
+  background: var(--soba-green);
+  padding: 8mm 10mm;
+  margin: 0mm 0 5mm 0;
+  border-radius: 4pt;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.cta-block__heading {
+  font-family: var(--font-display);
+  font-size: 16pt;
+  font-weight: 800;
+  color: var(--soba-black);
+  margin: 0 0 3mm 0;
+  line-height: 1.2;
+}
+
+.cta-block p {
+  font-family: var(--font-display);
+  font-size: var(--pt-body);
+  line-height: 1.45;
+  color: var(--soba-black);
+  margin-bottom: 3mm;
+}
+
+.cta-block p:last-child {
+  margin-bottom: 0;
+}
+
+.cta-block__price {
+  font-weight: 700;
+}
+
+.cta-block__action {
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 4mm;
+}
+.pull-quote-closing {
+  margin: 64mm 4mm 8mm 4mm;
+  padding: 8mm 4mm;
+  border-top: 2.5pt solid var(--soba-green);
+  border-bottom: 2.5pt solid var(--soba-green);
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.pull-quote-closing__text {
+  font-family: var(--font-display);
+  font-size: 22pt;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.35;
+  margin: 0 0 5mm 0;
+  color: var(--soba-black);
+}
+
+.pull-quote-closing__source {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--soba-black);
+  letter-spacing: 0.02em;
+}
+.criteria-illustration {
+  text-align: center;
+  margin: 33mm 0 0 0;
+  page-break-before: avoid;
+}
+
+.illustration-sushi {
+  display: block;
+  margin: 0 auto;
+  max-width: 150mm;
+  height: auto;
+}
+.cta-block {
+  background: var(--soba-green);
+  padding: 8mm 10mm;
+  margin: 0mm 0 5mm 0;
+  border-radius: 4pt;
+  page-break-inside: avoid;
+}
+
+.cta-block__copy {
+  font-family: var(--font-display);
+  font-size: 12pt;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 4mm 0;
+  color: var(--soba-black);
+}
+
+.cta-block__action {
+  font-family: var(--font-display);
+  font-size: 12pt;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--soba-black);
+}
+.competitor-comparison td {
+  font-size: 8pt;
+  line-height: 1.2;
+  padding: 2mm 2mm;
+}
+
+.competitor-comparison {
+  page-break-inside: avoid;
+}
+.costing-illustration {
+  text-align: center;
+  margin: 8mm 0 0 0;
+  page-break-before: avoid;
+}
+
+.illustration-bento {
+  display: block;
+  margin: 0 auto;
+  max-width: 70mm;
+  height: auto;
+}
+.page--contact h1,
+.page--contact h2,
+.page--contact .contact__heading,
+.page--contact .contact__line,
+.page--contact p {
+  color: var(--soba-green);
+}
+.issue-block {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 8mm;
+}
+.severity-illustration {
+  text-align: center;
+  margin: 30mm 0 0 0;
+  page-break-before: avoid;
+}
+
+.illustration-traffic-bowls {
+  display: block;
+  margin: 0 auto;
+  max-width: 130mm;
+  height: auto;
+}

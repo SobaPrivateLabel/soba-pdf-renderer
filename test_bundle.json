@@ -1,0 +1,146 @@
+{
+  "url": "https://www.pandaroll.co.uk/",
+  "company_name": "PandaRoll",
+  "score": 3.5,
+  "score_label": "Partially positioned",
+  "score_presentation": "3.5 out of 5 (Partially positioned, approaching differentiated)",
+  "error": null,
+  "report_date": "April 2026",
+  "sections": {
+    "score": {
+      "score": 3.5,
+      "label": "Partially positioned",
+      "presentation": "3.5 out of 5",
+      "score_band_short": "Partially positioned, approaching differentiated",
+      "score_band_uppercase": "PARTIALLY POSITIONED, APPROACHING DIFFERENTIATED",
+      "key_differentiator": "A proprietary dataset of over 8,000 professional services firms across the UK and Europe.",
+      "target_level": 4,
+      "criteria_checklist": [
+        {"id": "a", "description": "Specific, non-generic language describing what the firm does", "status": "Met"},
+        {"id": "b", "description": "Defined audience: named segment, industry, or revenue band", "status": "Met"},
+        {"id": "c", "description": "At least one differentiator a competitor could not claim unchanged", "status": "Met"},
+        {"id": "d", "description": "Evidence supporting the positioning claim", "status": "Not met"}
+      ],
+      "gap_to_next_level": "The fourth criterion is evidence, and the homepage has none.",
+      "opening_paragraphs": [
+        "Your homepage tells a buyer what you do (independent B2B market research), who you serve (professional services firms in the UK and Europe), and gives them one credible reason to care (a proprietary dataset of 8,000 firms). That puts you clear of the generic middle of the category.",
+        "What it does not do is prove the research works. Not one named client. Not one case study. Not one outcome. The only quote on the page ('We provide the research that gives B2B firms the confidence to act') is you quoting yourself. A buyer scanning for validation finds nothing to grip."
+      ],
+      "what_this_means_paragraphs": [
+        "You have done the hard part. The 8,000-firm dataset is a genuine differentiator. The audience is named. The offer is specific enough to distinguish PandaRoll from Brandspeak or Kadence on one side, and from the pure panel providers on the other.",
+        "But a differentiator without evidence is a claim. 94% of pricing power comes from meaningful difference, not familiarity. You have a meaningful difference; you have not yet shown what it produces. Until you do, the dataset reads as an asset, not a result.",
+        "The single thing you need to fix to move from 3.5 to 4: add evidence. A named client, a case study tied to an outcome, a testimonial tied to a result, or a usage statistic beyond the size of the database. Anything a buyer can use to believe the research works. Pick the strongest and put it near the top."
+      ]
+    },
+    "executive_summary": {
+      "score_label": "3.5 out of 5",
+      "score_band": "PARTIALLY POSITIONED, APPROACHING DIFFERENTIATED",
+      "headline_takeaway": "Three of the four criteria for a 4 are met. The remaining one is evidence.",
+      "pull_quote": "You've cleared the generic middle of the category, but you haven't yet earned the shortlist.",
+      "body_paragraphs": [
+        "Three of the four criteria for a 4 are met. The offer is specific; the audience is named. The 8,000-firm dataset is a differentiator that Source, Meridian West, and B2B International can't claim unchanged. That's the good news.",
+        "The fourth criterion is evidence, and the homepage has none. No named clients, no case studies, no testimonials with a real name attached. The only quote on the page is PandaRoll quoting PandaRoll. Ninety percent of B2B purchases go to firms already on the shortlist, and shortlists get built from proof, not claims.",
+        "The single change that moves you from 3.5 to 4 is adding real proof: a named client, a case study tied to an outcome, or a testimonial from a firm the buyer recognises. But the larger move is publishing the PandaRoll Professional Services Positioning Index, an annual benchmark report that claims the territory and produces the case studies the homepage lacks. Which side of that line do you want to be on?"
+      ]
+    },
+    "costing": {
+      "intro": "At 3.5, you have earned a seat at the table. You have not yet earned a reason to win it. That costs you in four specific ways.",
+      "sections": [
+        {"title": "Pricing power", "body": "Independent research from a proprietary dataset is premium positioning. Without proof that the research produces results, the premium stays theoretical, and you end up discussing price. A 1% price disadvantage costs between 6% and 14% of operating profit, so this is not a small problem. Every buyer who can't verify your outputs becomes a buyer who negotiates."},
+        {"title": "Shortlist inclusion", "body": "Between 80% and 90% of B2B buyers build a shortlist before they speak to a single provider, and 90% of purchases go to firms already on that list. Your category has a dominant name: Source Global Research. When a prospect is building their list, Source has six client testimonials, a published reports catalogue, and named analysts. You have one data point and a self-attributed quote. Who gets on the shortlist?"},
+        {"title": "Sales cycle length", "body": "When a homepage does the positioning work, the sales conversation is shorter because the buyer arrives with the answer half-formed. Your homepage leaves the positioning work for the meeting. That means more meetings, more clarifying questions, more chances for the deal to stall. The absence of proof becomes time on the calendar."},
+        {"title": "Defensibility", "body": "Your positioning territory is defensible. The firms best placed to copy you are Source and Meridian West, and neither does exactly what you do. But 68% of professional services firms wait too long to address positioning gaps and only act after win rates have dropped. Is that the schedule you want to keep?"}
+      ]
+    },
+    "competitive_landscape": {
+      "intro_paragraph": "Your three closest UK competitors are Source Global Research, Meridian West, and B2B International. Each one sits near you on one axis and further away on another.",
+      "competitor_descriptions": [
+        {"name": "Source Global Research", "paragraph": "Source is the most direct competitor. Both firms publish independent research on the professional services sector; both anchor their claim to a proprietary data model. Source has 19 years of market presence, a named intelligence hub, a published reports catalogue, and the Big Four as clients."},
+        {"name": "Meridian West", "paragraph": "Meridian West is less about market sizing and more about client insight and thought leadership for advisory firms. Their homepage carries 70+ named client logos, four named proprietary tools, and 20 years of data."},
+        {"name": "B2B International", "paragraph": "B2B International is the generalist: the largest of the three, part of dentsu B2B, spans every B2B sector worldwide, and publishes the Superpowers Index. Less of a direct rival on professional services specifically, but the firm a large buyer will already have heard of."}
+      ],
+      "comparison_table": {
+        "columns": ["PandaRoll", "Source Global Research", "Meridian West", "B2B International"],
+        "rows": [
+          {"label": "Market tier", "values": ["Niche specialist", "Established specialist", "Established specialist", "Global generalist"]},
+          {"label": "Audience specificity", "values": ["Professional services firms, UK and Europe", "Professional services firms, global", "Advisory firms: law, accountancy, real estate", "B2B brands across every sector"]},
+          {"label": "Key differentiator", "values": ["Proprietary dataset of 8,000+ professional services firms", "MegaModel market-sizing data and annual buyer surveys", "Named proprietary tools: CLIMB, ATLAS, CoreClarity", "4,000+ studies; 120+ countries; part of dentsu B2B"]},
+          {"label": "Proof points present", "values": ["One data point (8,000 firms); no named clients", "Six client testimonials; intelligence hub; quoted analysts", "70+ named client logos (Deloitte, EY, Hogan Lovells)", "Vodafone and BP testimonials; 900+ named clients"]},
+          {"label": "Visual distinctiveness", "values": ["Polished but conventional advisory look", "Clean corporate with branded colour system", "Photographic, structured, design-led", "Corporate, functional, low brand expression"]},
+          {"label": "Similarity", "values": ["", "~65%", "~60%", "~45%"]}
+        ]
+      },
+      "language_analysis": {
+        "intro": "Strip out the stop words and the phrases your homepage shares with competitor sites are the phrases every firm in the category uses. None of them belongs to you.",
+        "shared_phrases": ["Market research and insights", "B2B", "Independent", "Professional services firms", "Make better strategic decisions", "Competitive intelligence", "Benchmarks"],
+        "unique_intro": "Now the phrases that are yours alone:",
+        "unique_phrases": ["Proprietary dataset of over 8,000 professional services companies", "Most comprehensive positioning dataset in the sector", "Publishing for the sector as a whole", "Research imprint of Soba Private Label"]
+      },
+      "visual_identity": {
+        "comparison_table": {
+          "columns": ["PandaRoll", "Source", "Meridian West", "B2B International"],
+          "rows": [
+            {"label": "Dominant palette", "values": ["Warm neutrals, muted accents", "Green and off-white", "Teal and white", "Corporate dark blue"]},
+            {"label": "Photography", "values": ["Single stylised portrait; decorative illustration", "Object photography with brand overlay", "Team photography, consistent styling", "Stock-led, functional"]},
+            {"label": "Brand expression", "values": ["Emerging, not fully owned", "Confident and consistent", "Confident and consistent", "Restrained, functional"]},
+            {"label": "Distinctiveness vs category", "values": ["~55%", "~80%", "~80%", "~50%"]}
+          ]
+        },
+        "commentary_paragraphs": [
+          "The PandaRoll visual identity is polished without being distinctive. It sits in the advisory-consultancy aesthetic: warm neutrals, a single stylised portrait, decorative illustration used as a section break. None of this hurts you, but none of it helps a buyer remember the brand a week later.",
+          "Source and Meridian West have each committed to a single colour system and repeat it without flinching. That is how visual memory works. B2B International makes no real effort on brand expression; they rely on scale. You are a new entrant, so scale is not available. Distinctiveness is."
+        ]
+      },
+      "gaps": {
+        "intro": "There are two positioning territories in this category that no one is fully owning, and both are within your reach.",
+        "territories": [
+          {"name": "The positioning specialist", "description": "Source owns market sizing. Meridian West owns client listening. B2B International owns global B2B breadth. Nobody has planted a flag specifically on positioning research for professional services firms, which is what your homepage copy says you do.", "concrete_asset": "A sharpened claim around the positioning specialist territory", "rank": 1},
+          {"name": "The benchmark", "description": "A named, repeatable, annual benchmark report would do two things at once. It would give you a named proprietary asset. It would also generate the evidence you currently lack, because a benchmark produces case studies by its nature.", "concrete_asset": "The PandaRoll Professional Services Positioning Index", "rank": 2}
+        ]
+      }
+    },
+    "key_issues_or_strengths": {
+      "section_mode": "issues",
+      "intro": "Five specific issues separate your homepage from a 4.",
+      "issues": [
+        {"title": "No outcome evidence", "body": "This is the big one. No named client, no case study, no testimonial tied to a result. For a firm selling strategic intelligence to sceptical buyers, that is the equivalent of a financial advisor with no client list. It does not matter how strong the product is if the page cannot prove anyone has used it and benefited.", "priority": "HIGH"},
+        {"title": "A quote that looks like a testimonial but is not", "body": "The pull-quote halfway down the page ('We provide the research that gives B2B firms the confidence to act') is set in italics, wrapped in quotation marks, and given the visual weight of a customer endorsement. It is, in fact, PandaRoll quoting PandaRoll. A buyer reading carefully will notice. Either way, the quote is working against you.", "priority": "MEDIUM"},
+        {"title": "No named methodology", "body": "Your four service categories (Sector Research Reports, Positioning Benchmarks, Database Intelligence, Custom Research) are functional product names, not methodology. Source has the MegaModel, Meridian West has CLIMB, ATLAS, and CoreClarity. A named methodology signals a point of view. Product categories signal a menu.", "priority": "MEDIUM"},
+        {"title": "Hero headline is category language", "body": "'B2B market research and insights' describes the category, not your place in it. Thirty UK firms could run the same headline tomorrow. The strongest line on your page (the 8,000-firm dataset) is the third item in the third section. Move it.", "priority": "LOW"},
+        {"title": "The 8,000 firms claim carries no proof of scale", "body": "You say you have the 'most comprehensive positioning dataset in the sector'. This is a superlative claim. A buyer who takes brand claims seriously will ask: most comprehensive by what measure, and compared to whom? The number 8,000 is strong. The superlative is unsupported.", "priority": "LOW"}
+      ]
+    },
+    "recommendations": {
+      "intro": "You are at 3.5. The scoring framework is clear: the recommendations focus on the one criterion that is not met. That criterion is evidence.",
+      "recommendations": [
+        {"title": "Add three pieces of evidence", "body": "A case study with a named client and a stated outcome. A testimonial with a real name and a real firm. A usage statistic that is not the size of the database. Any two of the three will move you to a 4; all three will move you decisively. If your client relationships prevent naming, anonymise by firm type ('Top-10 UK consultancy', 'FTSE 250 advisory firm')."},
+        {"title": "Replace the self-quote", "body": "The quoted manifesto line in the middle of the page must go. Either strip it out entirely (cleaner page, no loss) or replace it with a real testimonial in the same slot (same visual structure, infinitely more credible)."},
+        {"title": "Restructure the hero", "body": "Lead with your differentiator, not the category. A working direction: 'Positioning research for professional services firms, grounded in the UK and Europe's largest dataset on how 8,000+ firms position themselves.' It is longer than your current hero. It does more work."},
+        {"title": "Name one methodology and one flagship report", "body": "You have four product categories; none of them is a methodology. Pick your most distinctive capability and name it. Then name one flagship annual report built from it. The methodology buys you defensibility; the report buys you annual PR, inbound leads, and a recurring source of case study material."}
+      ],
+      "where_to_plant_your_flag": {
+        "title": "Where to plant your flag",
+        "competitors_own": [
+          {"name": "Source Global Research", "owns": "Market sizing"},
+          {"name": "Meridian West", "owns": "Client listening for advisory firms"},
+          {"name": "B2B International", "owns": "Global B2B breadth"}
+        ],
+        "empty_territory": "Positioning research for professional services firms.",
+        "the_move": "Publish the PandaRoll Professional Services Positioning Index, an annual benchmark report built from your 8,000-firm dataset.",
+        "why_this_works": "It claims the empty territory, produces the evidence the homepage currently lacks, and creates a category-defining publication competitors cannot replicate without looking derivative."
+      }
+    },
+    "what_to_do_next": {
+      "intro": "A practical, prioritised plan. The order matters.",
+      "actions": [
+        {"number": 1, "title": "Align the leadership team on a single positioning sentence.", "body": "If Storm and anyone else representing PandaRoll cannot independently finish the sentence 'PandaRoll is the firm that...' the same way, the positioning needs more work before the homepage does. This is a one-hour exercise that saves months."},
+        {"number": 2, "title": "Run buyer interviews.", "body": "Five to ten conversations with current, lapsed, and lost clients. Ask what they thought PandaRoll did when they first found you, what they ended up buying, and what they would tell a peer. The gap between those three answers is your positioning gap."},
+        {"number": 3, "title": "Audit the competitors on the same dimensions.", "body": "Source, Meridian West, B2B International, and three or four others. Map what each one claims, where each one is strong, and where each one has quietly given up. The uncontested territory is where you plant the flag."},
+        {"number": 4, "title": "Narrow the positioning to one defensible claim.", "body": "Not the broadest territory; the most defensible one. 'The largest positioning dataset for UK and European professional services firms' is narrower than 'B2B market research and insights' and stronger for being narrower."},
+        {"number": 5, "title": "Write a positioning statement and test it with buyers.", "body": "Three to five buyers, each from a different segment. If they read it back to you in their own words and get it right, you have a statement worth committing to. If they don't, the statement needs another pass."},
+        {"number": 6, "title": "Build a landing page before any rebrand.", "body": "Run the new positioning on a single page, route a slice of traffic to it, and measure conversion against the current homepage. Firms that test positioning before rolling it out avoid the most expensive mistake in this category: changing a brand to say something the market does not want to hear."},
+        {"number": 7, "title": "Choose one flagship report and publish it this year.", "body": "A benchmark report is the fastest way to generate the evidence your homepage is missing and the authority your category rewards. The dataset is already built; the report is a writing problem, not a research one."}
+      ]
+    }
+  }
+}

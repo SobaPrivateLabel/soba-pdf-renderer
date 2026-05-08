@@ -1,0 +1,9 @@
+output/
+__pycache__/
+*.pyc
+.env
+.env.local
+.DS_Store
+*.swp
+.vscode/
+*.partial.json
