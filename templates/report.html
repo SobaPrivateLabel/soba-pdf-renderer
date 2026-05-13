@@ -60,7 +60,7 @@
     {# The score pill text. Use safe substitution to defend against the
        "OUTOF" collapse: if the bundle's presentation field is malformed,
        fall back to constructing it from score_value. #}
-    <div class="score-pill">{{ sections.score.presentation|replace('OUTOF', 'OUT OF') }}</div>
+   <div class="score-pill">{{ sections.score.presentation.split(' (')[0]|replace('OUTOF', 'OUT OF') }}</div>
     <p class="score-label">{{ sections.score.score_band_short }}</p>
 
     {% for paragraph in sections.score.opening_paragraphs %}
