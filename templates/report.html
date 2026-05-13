@@ -68,7 +68,8 @@
     {% endfor %}
 
     {% set met_count = sections.score.criteria_checklist|selectattr('status', 'equalto', 'Met')|list|length %}
-    <p>{{ sections.score.criteria_checklist|length }} of the four criteria for a {{ sections.score.target_level }} are assessed below. {{ met_count }} are met.</p>
+    {% set number_words = {0: 'Zero', 1: 'One', 2: 'Two', 3: 'Three', 4: 'Four'} %}
+    <p>{{ number_words[sections.score.criteria_checklist|length] }} of the four criteria for a {{ sections.score.target_level }} are assessed below. {{ number_words[met_count] }} are met.</p>
 
     <h2 class="pill">What's gone wrong; what's gone well</h2>
     <table class="criteria-table">
